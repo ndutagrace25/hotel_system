@@ -29,6 +29,8 @@ Class User_type_model extends CI_Model
     //displaying all user types
     public function all_user_types()
     {
+        
+        $this->db->where("deleted",0);
         $user_types = $this->db->get("user_type");
         return $user_types;
     }
@@ -58,6 +60,21 @@ Class User_type_model extends CI_Model
             return false;
         }
         
+    }
+
+    //function for deleting a record
+    public function delete_user_type($user_type_id)
+    {
+        $this->db->where("user_type_id",$user_type_id);
+        $this->db->set("deleted",1);
+        
+
+        if($this->db->update("user_type"))
+        {
+            $undeleted_rows = $this->all_user_types();
+            return $undeleted_rows;
+        }
+
     }
 }
 ?>

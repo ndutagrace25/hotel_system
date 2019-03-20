@@ -84,6 +84,26 @@ public function index()
                   
        $this->load->view("site/layouts/layout", $data);
     }
+
+    //function for deleting a row
+    public function delete_user_type($user_type_id)
+    {
+        $undeleted_rows = $this->user_type_model->delete_user_type($user_type_id);
+
+        if($undeleted_rows)
+        {
+            $this->session->set_flashdata("success_message","User Type Deleted Successful");
+        } else{
+            $this->session->set_flashdata("error_message","Failed to Delete User Type");
+        }
+        $v_data["all_user_types"] = $undeleted_rows;
+        $data = array("title" => $this->site_model->display_page_title(),
+        "content" => $this->load->view("all_user_types", $v_data, true)
+       );
+     
+        $this->load->view("site/layouts/layout", $data);
+
+    }
    
 
 }

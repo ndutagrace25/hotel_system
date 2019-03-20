@@ -185,6 +185,8 @@
                 <?php echo anchor("user_management/user_types/edit_user_type/" . $id, '<i class="fas fa-edit"></i>', "class ='btn btn-info btn-sm'"); ?>     
                 </td>
                 
+                <td><?php echo anchor("user_management/user_types/delete_user_type/". $id,"<i class='fas fa-trash-alt'><i>", array ("onclick" => "return confirm('Are you sure you want to delete this record?')", "class"=>"btn btn-danger btn-sm"));?></td>
+                
 
             </tr>
             <?php
